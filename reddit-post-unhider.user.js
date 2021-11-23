@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://old.reddit.com/user/*/hidden/
 // @grant       none
-// @version     1.0.1
+// @version     1.0.2
 // @updateURL   https://github.com/danielvigaru/reddit-post-unhider.user.js/raw/main/reddit-post-unhider.user.js
 // @downloadURL https://github.com/danielvigaru/reddit-post-unhider.user.js/raw/main/reddit-post-unhider.user.js
 // @homepageURL https://github.com/danielvigaru/reddit-post-unhider.user.js
@@ -13,11 +13,13 @@
 window.onload = () => {
   let pageDone = false;
   setInterval(() => {
-    try {
-      if (!pageDone) $('.unhide-button a')[0].click();
-    } catch {
-      pageDone = true;
-      location.reload();
+    if (!pageDone) {
+      try {
+        $('.unhide-button a')[0].click();
+      } catch {
+        pageDone = true;
+        location.reload();
+      }
     }
   }, 750);
 };
